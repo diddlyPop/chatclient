@@ -30,15 +30,14 @@ class Client:
         self.buttons = {"dog": "\n ^..^          /\n/_/\_____/\n     /\   /\\\n    /  \ /  \\"}
         self.colors = ["black", "red", "green", "darkblue"]     # TODO need more colors
         self.connection = None  # NULL connection at start
-        self.reduce_color = True
         self.__setup_flow()     # connect to chatroom server
         self.layout_main = [
             [sg.Multiline("", background_color="black", key="protocol", autoscroll=True, size=(80, 20))],
             [sg.Text('%s: ' % self.user, size=(15, 1)), sg.InputText('', do_not_clear=False)],
             [sg.Submit('Send'), sg.Quit(), sg.Button("dog", button_color=sg.TRANSPARENT_BUTTON,
                                                      image_filename="sprites/dog.png", image_size=(25, 25), image_subsample=5,
-                                                     border_width=0),
-                                           sg.Button("b/w")]    # TODO reduced colors - black/white/red mode
+                                                     border_width=0)
+                                           ]    # TODO reduced colors - black/white/red mode
         ]
         self.window_main = sg.Window('Chat').Layout(self.layout_main)
 
@@ -129,15 +128,12 @@ class Client:
     # prints messages according to sender's 'title' color
     # uses first letter of name to choose a color
     def printcolor(self, sender, message):
-        if not self.reduce_color:
-            back_color = "black"
-            try:
-                sender = sender.lower()
-                color = ord(sender) - 97
-                back_color = self.colors[color]
-            except:
-                back_color = "black"
-        else:
+        back_color = "black"
+        try:
+            sender = sender.lower()
+            color = ord(sender) - 97
+            back_color = self.colors[color]
+        except:
             back_color = "black"
         txt = self.window_main.FindElement("protocol").Widget
         txt.tag_config(sender, background=back_color, foreground="white")
