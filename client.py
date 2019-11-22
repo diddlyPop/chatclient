@@ -28,7 +28,8 @@ class Client:
     def __init__(self):
         self.user = None        # NULL username at start
         self.buttons = {"dog": "\n ^..^          /\n/_/\_____/\n     /\   /\\\n    /  \ /  \\"}
-        self.colors = ["black", "red", "green", "darkblue"]     # TODO need more colors
+        self.colors = ["black", "red", "green", "darkblue", "brown", "purple", "red", "green", "darkblue", "brown", "purple"
+                       , "red", "green", "darkblue", "brown", "purple", "red", "green", "darkblue", "brown", "purple", "red", "green", "darkblue", "brown", "purple"]     # TODO need more colors
         self.connection = None  # NULL connection at start
         self.__setup_flow()     # connect to chatroom server
         self.layout_main = [
